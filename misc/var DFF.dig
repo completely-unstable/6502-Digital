@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="utf-8"?>
+<circuit>
+  <version>1</version>
+  <attributes>
+    <entry>
+      <string>backgroundColor</string>
+      <awt-color>
+        <red>0</red>
+        <green>0</green>
+        <blue>0</blue>
+        <alpha>255</alpha>
+      </awt-color>
+    </entry>
+    <entry>
+      <string>isGeneric</string>
+      <boolean>true</boolean>
+    </entry>
+    <entry>
+      <string>Label</string>
+      <string>​</string>
+    </entry>
+    <entry>
+      <string>Width</string>
+      <int>2</int>
+    </entry>
+  </attributes>
+  <visualElements>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>D</string>
+        </entry>
+        <entry>
+          <string>generic</string>
+          <string>this.Bits=args.bits;</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1640" y="900"/>
+    </visualElement>
+    <visualElement>
+      <elementName>NAnd</elementName>
+      <elementAttributes>
+        <entry>
+          <string>generic</string>
+          <string>this.Bits=args.bits;</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1820" y="880"/>
+    </visualElement>
+    <visualElement>
+      <elementName>NAnd</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Inputs</string>
+          <int>3</int>
+        </entry>
+        <entry>
+          <string>generic</string>
+          <string>this.Bits=args.bits;</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1820" y="980"/>
+    </visualElement>
+    <visualElement>
+      <elementName>NAnd</elementName>
+      <elementAttributes>
+        <entry>
+          <string>inverterConfig</string>
+          <inverterConfig>
+            <string>In_1</string>
+          </inverterConfig>
+        </entry>
+        <entry>
+          <string>generic</string>
+          <string>this.Bits=args.bits;</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1720" y="860"/>
+    </visualElement>
+    <visualElement>
+      <elementName>NAnd</elementName>
+      <elementAttributes>
+        <entry>
+          <string>inverterConfig</string>
+          <inverterConfig>
+            <string>In_1</string>
+            <string>In_2</string>
+          </inverterConfig>
+        </entry>
+        <entry>
+          <string>generic</string>
+          <string>this.Bits=args.bits;</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1720" y="1000"/>
+    </visualElement>
+    <visualElement>
+      <elementName>GenericInitCode</elementName>
+      <elementAttributes>
+        <entry>
+          <string>generic</string>
+          <string>bits:=16;</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1640" y="720"/>
+    </visualElement>
+    <visualElement>
+      <elementName>NAnd</elementName>
+      <elementAttributes>
+        <entry>
+          <string>generic</string>
+          <string>this.Bits=args.bits;</string>
+        </entry>
+      </elementAttributes>
+      <pos x="2060" y="880"/>
+    </visualElement>
+    <visualElement>
+      <elementName>NAnd</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Inputs</string>
+          <int>3</int>
+        </entry>
+        <entry>
+          <string>generic</string>
+          <string>this.Bits=args.bits;</string>
+        </entry>
+      </elementAttributes>
+      <pos x="2060" y="980"/>
+    </visualElement>
+    <visualElement>
+      <elementName>NAnd</elementName>
+      <elementAttributes>
+        <entry>
+          <string>generic</string>
+          <string>this.Bits=args.bits;</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1960" y="860"/>
+    </visualElement>
+    <visualElement>
+      <elementName>NAnd</elementName>
+      <elementAttributes>
+        <entry>
+          <string>generic</string>
+          <string>this.Bits=args.bits;</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1960" y="1000"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>Q</string>
+        </entry>
+        <entry>
+          <string>generic</string>
+          <string>this.Bits=args.bits;</string>
+        </entry>
+      </elementAttributes>
+      <pos x="2180" y="900"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>~Q</string>
+        </entry>
+        <entry>
+          <string>generic</string>
+          <string>this.Bits=args.bits;</string>
+        </entry>
+      </elementAttributes>
+      <pos x="2180" y="1000"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Reset</elementName>
+      <elementAttributes/>
+      <pos x="1840" y="1000"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Reset</elementName>
+      <elementAttributes/>
+      <pos x="2080" y="1000"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Clock</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>​</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1640" y="1060"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Splitter</elementName>
+      <elementAttributes>
+        <entry>
+          <string>mirror</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>Input Splitting</string>
+          <string>1</string>
+        </entry>
+        <entry>
+          <string>generic</string>
+          <string>this.&apos;Input Splitting&apos;=&quot;1*&quot;+args.bits;
+this.&apos;Output Splitting&apos;=&quot;&quot;+args.bits;
+this.splitterSpreading=0;</string>
+        </entry>
+        <entry>
+          <string>Output Splitting</string>
+          <string>1</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1840" y="1000"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Splitter</elementName>
+      <elementAttributes>
+        <entry>
+          <string>mirror</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>Input Splitting</string>
+          <string>1</string>
+        </entry>
+        <entry>
+          <string>generic</string>
+          <string>this.&apos;Input Splitting&apos;=&quot;1*&quot;+args.bits;
+this.&apos;Output Splitting&apos;=&quot;&quot;+args.bits;
+this.splitterSpreading=0;</string>
+        </entry>
+        <entry>
+          <string>Output Splitting</string>
+          <string>1</string>
+        </entry>
+      </elementAttributes>
+      <pos x="2080" y="1000"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Splitter</elementName>
+      <elementAttributes>
+        <entry>
+          <string>mirror</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
+          <string>Input Splitting</string>
+          <string>1</string>
+        </entry>
+        <entry>
+          <string>generic</string>
+          <string>this.&apos;Input Splitting&apos;=&quot;1*&quot;+args.bits;
+this.&apos;Output Splitting&apos;=&quot;&quot;+args.bits;
+this.splitterSpreading=0;</string>
+        </entry>
+        <entry>
+          <string>Output Splitting</string>
+          <string>1</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1640" y="1060"/>
+    </visualElement>
+  </visualElements>
+  <wires>
+    <wire>
+      <p1 x="1800" y="960"/>
+      <p2 x="1920" y="920"/>
+    </wire>
+    <wire>
+      <p1 x="1800" y="940"/>
+      <p2 x="1920" y="980"/>
+    </wire>
+    <wire>
+      <p1 x="2040" y="940"/>
+      <p2 x="2160" y="980"/>
+    </wire>
+    <wire>
+      <p1 x="2040" y="960"/>
+      <p2 x="2160" y="920"/>
+    </wire>
+    <wire>
+      <p1 x="2040" y="880"/>
+      <p2 x="2060" y="880"/>
+    </wire>
+    <wire>
+      <p1 x="1800" y="880"/>
+      <p2 x="1820" y="880"/>
+    </wire>
+    <wire>
+      <p1 x="1940" y="1040"/>
+      <p2 x="1960" y="1040"/>
+    </wire>
+    <wire>
+      <p1 x="1680" y="1040"/>
+      <p2 x="1700" y="1040"/>
+    </wire>
+    <wire>
+      <p1 x="1640" y="900"/>
+      <p2 x="1680" y="900"/>
+    </wire>
+    <wire>
+      <p1 x="2140" y="900"/>
+      <p2 x="2160" y="900"/>
+    </wire>
+    <wire>
+      <p1 x="1900" y="900"/>
+      <p2 x="1920" y="900"/>
+    </wire>
+    <wire>
+      <p1 x="1920" y="900"/>
+      <p2 x="1960" y="900"/>
+    </wire>
+    <wire>
+      <p1 x="2160" y="900"/>
+      <p2 x="2180" y="900"/>
+    </wire>
+    <wire>
+      <p1 x="1680" y="900"/>
+      <p2 x="1720" y="900"/>
+    </wire>
+    <wire>
+      <p1 x="1660" y="1060"/>
+      <p2 x="1680" y="1060"/>
+    </wire>
+    <wire>
+      <p1 x="1680" y="1060"/>
+      <p2 x="1940" y="1060"/>
+    </wire>
+    <wire>
+      <p1 x="1800" y="980"/>
+      <p2 x="1820" y="980"/>
+    </wire>
+    <wire>
+      <p1 x="2040" y="980"/>
+      <p2 x="2060" y="980"/>
+    </wire>
+    <wire>
+      <p1 x="2140" y="1000"/>
+      <p2 x="2160" y="1000"/>
+    </wire>
+    <wire>
+      <p1 x="1900" y="1000"/>
+      <p2 x="1920" y="1000"/>
+    </wire>
+    <wire>
+      <p1 x="1680" y="1000"/>
+      <p2 x="1700" y="1000"/>
+    </wire>
+    <wire>
+      <p1 x="1920" y="1000"/>
+      <p2 x="1960" y="1000"/>
+    </wire>
+    <wire>
+      <p1 x="2160" y="1000"/>
+      <p2 x="2180" y="1000"/>
+    </wire>
+    <wire>
+      <p1 x="1800" y="920"/>
+      <p2 x="1820" y="920"/>
+    </wire>
+    <wire>
+      <p1 x="2040" y="920"/>
+      <p2 x="2060" y="920"/>
+    </wire>
+    <wire>
+      <p1 x="1800" y="1020"/>
+      <p2 x="1820" y="1020"/>
+    </wire>
+    <wire>
+      <p1 x="2040" y="1020"/>
+      <p2 x="2060" y="1020"/>
+    </wire>
+    <wire>
+      <p1 x="1940" y="860"/>
+      <p2 x="1960" y="860"/>
+    </wire>
+    <wire>
+      <p1 x="1660" y="860"/>
+      <p2 x="1700" y="860"/>
+    </wire>
+    <wire>
+      <p1 x="1680" y="900"/>
+      <p2 x="1680" y="1000"/>
+    </wire>
+    <wire>
+      <p1 x="1680" y="1040"/>
+      <p2 x="1680" y="1060"/>
+    </wire>
+    <wire>
+      <p1 x="1920" y="900"/>
+      <p2 x="1920" y="920"/>
+    </wire>
+    <wire>
+      <p1 x="1920" y="980"/>
+      <p2 x="1920" y="1000"/>
+    </wire>
+    <wire>
+      <p1 x="2160" y="900"/>
+      <p2 x="2160" y="920"/>
+    </wire>
+    <wire>
+      <p1 x="2160" y="980"/>
+      <p2 x="2160" y="1000"/>
+    </wire>
+    <wire>
+      <p1 x="1940" y="860"/>
+      <p2 x="1940" y="1040"/>
+    </wire>
+    <wire>
+      <p1 x="1940" y="1040"/>
+      <p2 x="1940" y="1060"/>
+    </wire>
+    <wire>
+      <p1 x="1800" y="960"/>
+      <p2 x="1800" y="980"/>
+    </wire>
+    <wire>
+      <p1 x="1800" y="920"/>
+      <p2 x="1800" y="940"/>
+    </wire>
+    <wire>
+      <p1 x="2040" y="960"/>
+      <p2 x="2040" y="980"/>
+    </wire>
+    <wire>
+      <p1 x="2040" y="920"/>
+      <p2 x="2040" y="940"/>
+    </wire>
+    <wire>
+      <p1 x="1660" y="860"/>
+      <p2 x="1660" y="1060"/>
+    </wire>
+  </wires>
+  <measurementOrdering/>
+</circuit>

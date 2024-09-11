@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<circuit>
+  <version>1</version>
+  <attributes>
+    <entry>
+      <string>backgroundColor</string>
+      <awt-color>
+        <red>0</red>
+        <green>0</green>
+        <blue>0</blue>
+        <alpha>255</alpha>
+      </awt-color>
+    </entry>
+    <entry>
+      <string>isGeneric</string>
+      <boolean>true</boolean>
+    </entry>
+    <entry>
+      <string>Label</string>
+      <string>​</string>
+    </entry>
+    <entry>
+      <string>Width</string>
+      <int>2</int>
+    </entry>
+  </attributes>
+  <visualElements>
+    <visualElement>
+      <elementName>GenericInitCode</elementName>
+      <elementAttributes>
+        <entry>
+          <string>generic</string>
+          <string>sel_bits := 9 ;
+sel_pos := &quot;&quot;;</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-20" y="-60"/>
+    </visualElement>
+    <visualElement>
+      <elementName>GenericCode</elementName>
+      <elementAttributes>
+        <entry>
+          <string>generic</string>
+          <string>sbits:=args.sel_bits;
+
+pow:=1;
+for (i:=0;i&lt;sbits;i++) {
+    pow=pow*2;
+}
+gw:=sbits/2*2+1;
+
+addWire(0,6,pow*gw,6);
+
+for (i:=0;i&lt;pow;i++) {
+    and:=addComponent(&quot;And&quot;,i*gw+gw,10);
+    and.rotation=3;
+    and.Inputs=sbits;
+    out:=addComponent(&quot;Out&quot;,i*gw+gw/2+1,13);
+    out.Label=&quot;​_&quot;+i;
+
+    spl:=addComponent(&quot;Splitter&quot;,i*gw+gw,7);
+    spl.rotation=3;
+    spl.&apos;Input Splitting&apos;=&quot;&quot;+sbits;
+    if (!sbits%2) {
+    spl.&apos;Output Splitting&apos;=&quot;1*&quot;+floor(sbits/2)+&quot;,0,1*&quot;+floor(sbits/2);
+    } else {
+    spl.&apos;Output Splitting&apos;=&quot;1*&quot;+sbits;
+    }
+
+    addWire(i*gw+gw,6,i*gw+gw,7);
+
+    k:=0;
+    for (j:=pow;j&gt;1;j=j/2) {
+        k++;
+        x:=i*gw+k;
+        if ((sbits%2=0) &amp; (k&gt;gw/2)) {
+            x++;
+        }
+        if (((i%j)-(i%(j/2)))/(j/2)=0) {
+            addComponent(&quot;Not&quot;,x,8).rotation=3;
+        } else {
+            addComponent(&quot;Delay&quot;,x,8).rotation=3;
+        }
+    }
+}</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-800" y="-60"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>sel</string>
+        </entry>
+        <entry>
+          <string>generic</string>
+          <string>this.Bits=args.sel_bits;
+if (args.sel_pos = &quot;top&quot;) {
+  this.rotation = 3;
+}
+if (args.sel_pos = &quot;bot&quot;) {
+  this.rotation = 1;
+}</string>
+        </entry>
+      </elementAttributes>
+      <pos x="0" y="120"/>
+    </visualElement>
+  </visualElements>
+  <wires/>
+  <measurementOrdering/>
+</circuit>

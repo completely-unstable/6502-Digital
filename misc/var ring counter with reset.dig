@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<circuit>
+  <version>2</version>
+  <attributes>
+    <entry>
+      <string>backgroundColor</string>
+      <awt-color>
+        <red>0</red>
+        <green>0</green>
+        <blue>0</blue>
+        <alpha>255</alpha>
+      </awt-color>
+    </entry>
+    <entry>
+      <string>isGeneric</string>
+      <boolean>true</boolean>
+    </entry>
+    <entry>
+      <string>Label</string>
+      <string>​</string>
+    </entry>
+    <entry>
+      <string>romContent</string>
+      <romList>
+        <roms/>
+      </romList>
+    </entry>
+  </attributes>
+  <visualElements>
+    <visualElement>
+      <elementName>GenericInitCode</elementName>
+      <elementAttributes>
+        <entry>
+          <string>generic</string>
+          <string>size := 4;</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-280" y="320"/>
+    </visualElement>
+    <visualElement>
+      <elementName>GenericCode</elementName>
+      <elementAttributes>
+        <entry>
+          <string>generic</string>
+          <string>size := args.size;
+
+for(i:=0;i&lt;size;i++) {
+  x := i*7;
+  addComponent(&quot;var DFF.dig&quot;,x,0).bits := 1;
+  addComponent(&quot;DriverInvSel&quot;,x-3,0);
+  fet := addComponent(&quot;PFET&quot;,x+2,-1);
+  fet.rotation = 1;
+  fet.unidirectional = true;
+  fet.mirror = true;
+  if (i = 0) {
+    addComponent(&quot;PullUp&quot;,x-1,-1);
+  } else {
+    addComponent(&quot;PullDown&quot;,x-1,-1).rotation = 2;
+  }
+  addWire(x-2,0,x,0);
+  addWire(x-1,0,x-1,-1);
+  addWire(x+2,0,x+2,-1);
+  addWire(x-1,1,x,1);
+  addWire(x-1,1,x-1,2);
+  addWire(x-3,-1,x-3,-3);
+  addWire(x+2,0,x+3,0);
+  addWire(x,-2,x-5,-2);
+  addWire(x+3,0,x+3,5);
+  out := addComponent(&quot;Out&quot;,x+3,5);
+  out.rotation = 3;
+  out.Label = &quot;o_&quot; + i;
+  if (i = 0) {
+    addWire(x-1,2,x-10,2);
+  } else {
+    addWire(x-1,2,x-8,2);
+  }
+  addWire(x-3,-3,x-10,-3);
+  if (i = size-1) {
+    addComponent(&quot;VDD&quot;,x+2,-3);
+    addWire(x+2,-3,x+2,-2);
+  }
+}
+
+addWire(-9,3,-4+size*7,3);</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-140" y="340"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Or</elementName>
+      <elementAttributes/>
+      <pos x="-160" y="-20"/>
+    </visualElement>
+    <visualElement>
+      <elementName>PullDown</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="3"/>
+        </entry>
+      </elementAttributes>
+      <pos x="-200" y="-20"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Clock</elementName>
+      <elementAttributes>
+        <entry>
+          <string>runRealTime</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>C</string>
+        </entry>
+        <entry>
+          <string>Frequency</string>
+          <int>10</int>
+        </entry>
+      </elementAttributes>
+      <pos x="-200" y="40"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>R</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-200" y="-60"/>
+    </visualElement>
+  </visualElements>
+  <wires>
+    <wire>
+      <p1 x="-100" y="0"/>
+      <p2 x="-80" y="0"/>
+    </wire>
+    <wire>
+      <p1 x="-200" y="-20"/>
+      <p2 x="-180" y="-20"/>
+    </wire>
+    <wire>
+      <p1 x="-180" y="-20"/>
+      <p2 x="-160" y="-20"/>
+    </wire>
+    <wire>
+      <p1 x="-180" y="20"/>
+      <p2 x="-160" y="20"/>
+    </wire>
+    <wire>
+      <p1 x="-180" y="-40"/>
+      <p2 x="-100" y="-40"/>
+    </wire>
+    <wire>
+      <p1 x="-180" y="-40"/>
+      <p2 x="-180" y="-20"/>
+    </wire>
+    <wire>
+      <p1 x="-180" y="20"/>
+      <p2 x="-180" y="60"/>
+    </wire>
+  </wires>
+  <measurementOrdering/>
+</circuit>

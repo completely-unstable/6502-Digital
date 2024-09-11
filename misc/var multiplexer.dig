@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<circuit>
+  <version>1</version>
+  <attributes>
+    <entry>
+      <string>backgroundColor</string>
+      <awt-color>
+        <red>0</red>
+        <green>0</green>
+        <blue>0</blue>
+        <alpha>255</alpha>
+      </awt-color>
+    </entry>
+    <entry>
+      <string>isGeneric</string>
+      <boolean>true</boolean>
+    </entry>
+    <entry>
+      <string>Label</string>
+      <string>​</string>
+    </entry>
+    <entry>
+      <string>Width</string>
+      <int>2</int>
+    </entry>
+  </attributes>
+  <visualElements>
+    <visualElement>
+      <elementName>GenericInitCode</elementName>
+      <elementAttributes>
+        <entry>
+          <string>generic</string>
+          <string>data_bits := 8 ;
+sel_bits := 4 ;
+sel_pos := &quot;&quot;;</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-20" y="-60"/>
+    </visualElement>
+    <visualElement>
+      <elementName>GenericCode</elementName>
+      <elementAttributes>
+        <entry>
+          <string>generic</string>
+          <string>sbits:=args.sel_bits;
+dbits:=args.data_bits;
+
+pow:=1;
+for (i:=0;i&lt;sbits;i++) {
+    pow=pow*2;
+}
+gw:=sbits/2*2+1;
+
+addWire(0,6,pow*gw,6);
+
+
+if (sbits=1) {
+addWire(1,7,1,6);
+addWire(3,7,3,6);
+addWire(3,6,0,6);
+        addComponent(&quot;Not&quot;,1,7).rotation=3;
+        addComponent(&quot;Delay&quot;,3,7).rotation=3;
+addComponent(&quot;Driver&quot;,1,10).Bits = dbits;
+addComponent(&quot;Driver&quot;,3,12).Bits = dbits;
+addWire(3,9,3,11);
+in1:=addComponent(&quot;In&quot;,0,10);
+in1.Label = &quot;​_0&quot;;
+in1.Bits = dbits;
+in2:=addComponent(&quot;In&quot;,0,12);
+in2.Label = &quot;​_1&quot;;
+in2.Bits = dbits;
+addWire(0,12,2,12);
+out0:=addComponent(&quot;Out&quot;,6,12);
+out0.Label=&quot;​​_&quot;+dbits;
+out0.Bits=dbits;
+addWire(2,10,4,10);
+addWire(4,10,4,12);
+addWire(4,12,6,12);
+
+} else {
+for (i:=0;i&lt;pow;i++) {
+    and:=addComponent(&quot;And&quot;,i*gw+gw,10);
+    and.rotation=3;
+    and.Inputs=sbits;
+
+    y:=i*2+15;
+
+    addWire((i+0.5)*gw+1,13,(i+0.5)*gw+1,y-1);
+    addComponent(&quot;Driver&quot;,(i+0.5)*gw+1,y).Bits=dbits;
+    in:=addComponent(&quot;In&quot;,0,y);
+    in.Label=&quot;​_&quot;+i;
+    in.Bits=dbits;
+    addWire( 0 ,y, (i+0.5)*gw , i*2+15 );
+    addWire( (i+0.5)*gw+2 ,y, (i+1.5)*gw+2 ,y);
+    if (i+1=pow){
+    out:=addComponent(&quot;Out&quot;,(i+1.5)*gw+2 ,y);
+    out.Label=&quot;​​&quot;;
+    out.Bits=dbits;
+    } else {
+    addWire( (i+1.5)*gw+2 ,y, (i+1.5)*gw+2 ,y+2);
+    }
+
+    spl:=addComponent(&quot;Splitter&quot;,i*gw+gw,7);
+    spl.rotation=3;
+    spl.&apos;Input Splitting&apos;=&quot;&quot;+sbits;
+    if (!sbits%2) {
+    spl.&apos;Output Splitting&apos;=&quot;1*&quot;+floor(sbits/2)+&quot;,0,1*&quot;+floor(sbits/2);
+    } else {
+    spl.&apos;Output Splitting&apos;=&quot;1*&quot;+sbits;
+    }
+
+    addWire(i*gw+gw,6,i*gw+gw,7);
+
+    k:=0;
+    for (j:=pow;j&gt;1;j=j/2) {
+        k++;
+        x:=i*gw+k;
+        if ((sbits%2=0) &amp; (k&gt;gw/2)) {
+            x++;
+        }
+        if (((i%j)-(i%(j/2)))/(j/2)=0) {
+            addComponent(&quot;Not&quot;,x,8).rotation=3;
+        } else {
+            addComponent(&quot;Delay&quot;,x,8).rotation=3;
+        }
+    }
+}
+}</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-800" y="-60"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>sel</string>
+        </entry>
+        <entry>
+          <string>generic</string>
+          <string>this.Bits=args.sel_bits;
+if (args.sel_pos = &quot;top&quot;) {
+  this.rotation = 3;
+}
+if (args.sel_pos = &quot;bot&quot;) {
+  this.rotation = 1;
+}</string>
+        </entry>
+      </elementAttributes>
+      <pos x="0" y="120"/>
+    </visualElement>
+  </visualElements>
+  <wires/>
+  <measurementOrdering/>
+</circuit>

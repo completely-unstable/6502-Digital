@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<circuit>
+  <version>2</version>
+  <attributes>
+    <entry>
+      <string>shapeType</string>
+      <shapeType>LAYOUT</shapeType>
+    </entry>
+    <entry>
+      <string>backgroundColor</string>
+      <awt-color>
+        <red>0</red>
+        <green>0</green>
+        <blue>0</blue>
+        <alpha>255</alpha>
+      </awt-color>
+    </entry>
+    <entry>
+      <string>isGeneric</string>
+      <boolean>true</boolean>
+    </entry>
+    <entry>
+      <string>Label</string>
+      <string>​</string>
+    </entry>
+    <entry>
+      <string>romContent</string>
+      <romList>
+        <roms/>
+      </romList>
+    </entry>
+  </attributes>
+  <visualElements>
+    <visualElement>
+      <elementName>GenericInitCode</elementName>
+      <elementAttributes>
+        <entry>
+          <string>generic</string>
+          <string>bits := 9;</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-20" y="-200"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Splitter</elementName>
+      <elementAttributes>
+        <entry>
+          <string>splitterSpreading</string>
+          <int>10</int>
+        </entry>
+        <entry>
+          <string>Input Splitting</string>
+          <string>8</string>
+        </entry>
+        <entry>
+          <string>Output Splitting</string>
+          <string>1*8</string>
+        </entry>
+        <entry>
+          <string>generic</string>
+          <string>bits := 8;
+if (isPresent(args.bits)) {
+  bits = args.bits;
+}
+this.&apos;Input Splitting&apos;=&quot;&quot;+bits;
+this.&apos;Output Splitting&apos;=&quot;1*&quot;+bits;
+this.splitterSpreading=8;</string>
+        </entry>
+      </elementAttributes>
+      <pos x="0" y="0"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Splitter</elementName>
+      <elementAttributes>
+        <entry>
+          <string>splitterSpreading</string>
+          <int>10</int>
+        </entry>
+        <entry>
+          <string>Input Splitting</string>
+          <string>8</string>
+        </entry>
+        <entry>
+          <string>Output Splitting</string>
+          <string>1*8</string>
+        </entry>
+        <entry>
+          <string>generic</string>
+          <string>bits := 8;
+if (isPresent(args.bits)) {
+  bits = args.bits;
+}
+this.&apos;Input Splitting&apos;=&quot;&quot;+bits;
+this.&apos;Output Splitting&apos;=&quot;1*&quot;+bits;
+this.splitterSpreading=8;</string>
+        </entry>
+      </elementAttributes>
+      <pos x="0" y="40"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Splitter</elementName>
+      <elementAttributes>
+        <entry>
+          <string>splitterSpreading</string>
+          <int>10</int>
+        </entry>
+        <entry>
+          <string>Input Splitting</string>
+          <string>1*8</string>
+        </entry>
+        <entry>
+          <string>generic</string>
+          <string>bits := 8;
+if (isPresent(args.bits)) {
+  bits = args.bits;
+}
+this.&apos;Input Splitting&apos;=&quot;1*&quot;+bits;
+this.&apos;Output Splitting&apos;=&quot;&quot;+bits;
+this.splitterSpreading=8;</string>
+        </entry>
+      </elementAttributes>
+      <pos x="380" y="0"/>
+    </visualElement>
+    <visualElement>
+      <elementName>GenericCode</elementName>
+      <elementAttributes>
+        <entry>
+          <string>generic</string>
+          <string>bits := 8;
+if (isPresent(args.bits)) {
+  bits = args.bits;
+}
+
+func addHalfAdder(x,y) {
+addComponent(&quot;XOr&quot;,x+3,y);
+addComponent(&quot;And&quot;,x+3,y+3);
+addWire(x,y,x+3,y);
+addWire(x,y+2,x+3,y+2);
+addWire(x+2,y,x+2,y+3);
+addWire(x+1,y+2,x+1,y+5);
+addWire(x+2,y+3,x+3,y+3);
+addWire(x+1,y+5,x+3,y+5);
+addWire(x+6,y+1,x+7,y+1);
+addWire(x+6,y+4,x+7,y+4);
+
+}
+
+func addFullAdder(x,y) {
+
+addHalfAdder(x,y);
+addHalfAdder(x+7,y-1);
+addComponent(&quot;Or&quot;,x+14,y+3);
+addWire(x+7,y+4,x+7,y+5);
+addWire(x+7,y+5,x+14,y+5);
+addWire(x+14,y,x+18,y);
+addWire(x+17,y+4,x+18,y+4);
+
+}
+
+for (i:=0;i&lt;bits;i++) {
+
+addFullAdder(1,i*8);
+if (i&lt;bits-1) {
+addWire(19,i*8+4,19,i*8+6);
+addWire(8,i*8+6,19,i*8+6);
+addWire(8,i*8+6,8,i*8+7);
+} else {
+addWire(18,i*8+4,20,i*8+4);
+addWire(20,i*8+4,20,1);
+addWire(20,1,21,1);
+}
+
+}</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-420" y="0"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>A</string>
+        </entry>
+        <entry>
+          <string>Bits</string>
+          <int>8</int>
+        </entry>
+        <entry>
+          <string>generic</string>
+          <string>bits := 8;
+if (isPresent(args.bits)) {
+  bits = args.bits;
+}
+this.Bits = bits;</string>
+        </entry>
+      </elementAttributes>
+      <pos x="0" y="0"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>B</string>
+        </entry>
+        <entry>
+          <string>Bits</string>
+          <int>8</int>
+        </entry>
+        <entry>
+          <string>generic</string>
+          <string>bits := 8;
+if (isPresent(args.bits)) {
+  bits = args.bits;
+}
+this.Bits = bits;</string>
+        </entry>
+      </elementAttributes>
+      <pos x="0" y="40"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="3"/>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>c_i</string>
+        </entry>
+      </elementAttributes>
+      <pos x="160" y="-20"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>∑</string>
+        </entry>
+        <entry>
+          <string>Bits</string>
+          <int>8</int>
+        </entry>
+        <entry>
+          <string>generic</string>
+          <string>bits := 8;
+if (isPresent(args.bits)) {
+  bits = args.bits;
+}
+this.Bits = bits;</string>
+        </entry>
+      </elementAttributes>
+      <pos x="400" y="0"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="3"/>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>c_o</string>
+        </entry>
+      </elementAttributes>
+      <pos x="420" y="20"/>
+    </visualElement>
+    <visualElement>
+      <elementName>PullDown</elementName>
+      <elementAttributes/>
+      <pos x="160" y="-20"/>
+    </visualElement>
+    <visualElement>
+      <elementName>PullDown</elementName>
+      <elementAttributes>
+        <entry>
+          <string>generic</string>
+          <string>bits := 8;
+if (isPresent(args.bits)) {
+  bits = args.bits;
+}
+this.Bits = bits;</string>
+        </entry>
+      </elementAttributes>
+      <pos x="0" y="0"/>
+    </visualElement>
+    <visualElement>
+      <elementName>PullDown</elementName>
+      <elementAttributes>
+        <entry>
+          <string>generic</string>
+          <string>bits := 8;
+if (isPresent(args.bits)) {
+  bits = args.bits;
+}
+this.Bits = bits;</string>
+        </entry>
+      </elementAttributes>
+      <pos x="0" y="40"/>
+    </visualElement>
+  </visualElements>
+  <wires>
+    <wire>
+      <p1 x="400" y="20"/>
+      <p2 x="420" y="20"/>
+    </wire>
+  </wires>
+  <measurementOrdering/>
+</circuit>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<circuit>
+  <version>1</version>
+  <attributes>
+    <entry>
+      <string>backgroundColor</string>
+      <awt-color>
+        <red>0</red>
+        <green>0</green>
+        <blue>0</blue>
+        <alpha>255</alpha>
+      </awt-color>
+    </entry>
+    <entry>
+      <string>isGeneric</string>
+      <boolean>true</boolean>
+    </entry>
+    <entry>
+      <string>Label</string>
+      <string>​</string>
+    </entry>
+    <entry>
+      <string>Width</string>
+      <int>2</int>
+    </entry>
+  </attributes>
+  <visualElements>
+    <visualElement>
+      <elementName>GenericInitCode</elementName>
+      <elementAttributes>
+        <entry>
+          <string>generic</string>
+          <string>bits := 5 ;</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-20" y="-80"/>
+    </visualElement>
+    <visualElement>
+      <elementName>GenericCode</elementName>
+      <elementAttributes>
+        <entry>
+          <string>generic</string>
+          <string>bits:=args.bits;
+
+pow:=1;
+for(i:=0;i&lt;bits;i++){
+pow=pow*2;
+}
+
+
+for(i:=0;i&lt;pow;i++){
+addComponent(&quot;In&quot;,0,i).Label=&quot;​_&quot;+i;
+addWire(0,i,(pow/2+1)*bits+1,i);
+}
+
+or:=addComponent(&quot;Or&quot;,(pow/2+1)*bits+1,0);
+or.Inputs=pow+1;
+addComponent(&quot;Ground&quot;,(pow/2+1)*bits+1,pow);
+addWire((pow/2+1)*bits+4,pow/2,(pow/2+1)*bits+4,pow+1);
+addWire((pow/2+1)*bits+4,pow+1,pow/4+2,pow+1);
+
+
+dv:=pow;
+rp:=pow/dv;
+
+for(i:=1;i&lt;=bits;i++){
+
+dv=dv/2;
+rp=pow/dv;
+
+cx:=i*(pow/2+1);
+cy:=0;
+
+for(y:=1;y&lt;=rp;y++){
+  if (cy=pow/2) {
+    cx--;
+  }
+
+  for(z:=0;z&lt;dv;z++){
+    cy++;
+  }
+
+  if (y!=rp) {
+    for(z:=0;z&lt;dv;z++){
+      if (cy&lt;pow) {
+        if(cx-1=pow/4) {
+          cx--;
+        }
+        addWire(cx,cy,cx,pow);
+      }
+      cx--;
+      cy++;
+    }
+  }
+}
+
+or:=addComponent(&quot;Or&quot;,i*(pow/2+1),pow);
+or.Inputs=pow/2;
+or.rotation=3;
+
+addComponent(&quot;Driver&quot;,i*(pow/2+1)-pow/4,pow+4).rotation=3;
+addWire(i*(pow/2+1)-pow/4+1,pow+4,i*(pow/2+1)-pow/4+1,pow+1);
+out:=addComponent(&quot;Out&quot;,i*(pow/2+1)-pow/4,pow+5);
+out.rotation=3;
+out.Label=&quot;​​_&quot;+(bits-i);
+}</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-900" y="-560"/>
+    </visualElement>
+  </visualElements>
+  <wires/>
+  <measurementOrdering/>
+</circuit>
